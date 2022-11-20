@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  
+  <%- include('partials/nav.ejs') %>
+
+
+  <section class="games-settings">
+    <form action="/" method="POST" class="container">
+      <div class="set-games">
+        <div class="row">
+          <input name="user_name" id="user_name" class="d-none" type="text">
+          <input disabled name="game" class="set-name" type="text" placeholder="example">
+          <span  class="delete-inp">--</span>
+          <input disabled name="price" class="set-price" type="number" placeholder="price/hour">
+        </div>
+      </div>
+      <div class="row">
+        <div class="btns">
+          <div class="save-edit">
+            <button type="submit" id="save_btn">save</button>
+            <a id="reset_btn">reset</a>
+          </div>
+          <a id="plus_btn">+</a>
+        </div>
+      </div>
+      <div class="row">
+        <p class="valid d-none" id="invalid_name">game name cannot be empty</p>
+        <p class="valid d-none" id="invalid_price">game price cannot be empty</p>
+      </div>
+    </form>
+  </section>
+
+
+  <section id="popup" class="popup d-none">
+    <div class="popup-cont">
+      <div class="head">
+        <p>E7sbly</p>
+        <p>AZ</p>
+      </div>
+      <div class="info">
+        <p>Sorry, you have to login first</p>
+        <div class="btns">
+          <a href="/login">login</a>
+          <button id="not_now_btn">not now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <%- include('partials/scripts.ejs') %>
+  <script src="/js/index.js"></script>
+</body>
+</html>

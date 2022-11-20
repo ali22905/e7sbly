@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head.ejs') %>
+<body>
+  <%- include('partials/nav.ejs') %>
+  <section class="login">
+    <form action="/home" method="POST">
+      <h1>create account</h1>
+      <div class="user_name">
+        <input data-names="<%=user_names%>" type="text" placeholder="user_name" name="user_name" id="user_name_inp">
+        <p class="d-none" id="valid_un">this user name is taken</p>
+      </div>
+      <div class="password">
+        <input type="text" placeholder="password" name="pass" id="pass_inp">
+        <p class="d-none" id="valid_pass">password cannot be empty</p>
+      </div>
+      <div class="btns">
+        <button id="user_submit">submit</button>
+        <a href="/sign-in">sign-in</a>
+      </div>
+    </form>
+  </section>
+
+  <%- include('partials/scripts.ejs') %>
+  <script src="/js/login.js"></script>
+</body>
+</html>

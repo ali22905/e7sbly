@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  
+  <%- include('partials/nav.ejs') %>
+
+  <section class="sign-in">
+    <form id="signin_form" action="/home/" method="GET">
+      <h1>enter your account</h1>
+      <div class="user_name">
+        <input data-passes="<%=passwords%>" data-names="<%=user_names%>" type="text" placeholder="user_name" name="user_name" id="user_name_inp">
+        <p class="d-none" id="valid_un">this user name does not exist</p>
+      </div>
+      <div class="password">
+        <input type="text" placeholder="password" name="pass" id="pass_inp">
+        <p class="d-none" id="valid_pass">wrong password</p>
+      </div>
+      <div class="btns">
+        <button id="user_submit">submit</button>
+        <a href="/login">login</a>
+      </div>
+    </form>
+  </section>
+
+
+  <%- include('partials/scripts.ejs') %>
+  <script src="/js/sign_in.js"></script>
+
+</body>
+</html>

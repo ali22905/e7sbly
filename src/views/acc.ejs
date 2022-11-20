@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+<body>
+  
+  <%- include('partials/nav.ejs') %>
+
+  <section class="games-settings">
+    <h1>manage games</h1>
+    <form action="/home/<%=User.user_name%>" method="POST" class="container">
+      <div class="set-games">
+        <div class="row">
+          <input value="<%=User.user_name%>" name="user_name" id="user_name" class="d-none" type="text">
+          <input disabled name="game" class="set-name" type="text" placeholder="example">
+          <span  class="delete">--</span>
+          <input disabled name="price" class="set-price" type="number" placeholder="price/hour">
+        </div>
+        <% for (let i = 0; i < User.game.length; i++) { %>
+          <div class="row">
+            <input value="<%=User.game[i]%>" name="game" class="set-name" type="text" placeholder="example">
+            <span data-link="<%=User.user_name%>" class="delete-inp">--</span>
+            <input value="<%=User.price[i]%>" name="price" class="set-price" type="number" placeholder="price/hour">
+          </div>
+          
+        <% } %>
+      </div>
+      <div class="row">
+        <div class="btns">
+          <div class="save-edit">
+            <button type="submit" id="save_btn">save</button>
+            <a data-link="<%=User.user_name%>" id="reset_btn">reset</a>
+          </div>
+          <a id="plus_btn">+</a>
+        </div>
+      </div>
+      <div class="row">
+        <p class="valid d-none" id="invalid_name">game name cannot be empty</p>
+        <p class="valid d-none" id="invalid_price">game price cannot be empty</p>
+      </div>
+    </form>
+  </section>
+
+
+
+
+
+  <section class="game-card-cont">
+
+
+    <form action="/acc/<%=User.user_name%>" method="POST">
+
+
+
+
+      <% for (let i = 0; i < User.client_name.length; i++) { %>
+
+        <section class="game-card">
+          <div class="container">
+            <div class="row client-name-cont">
+              <input value="<%=User.chosen_game_price[i]%>" name="chosen_game_price" type="text" class="d-none game_price_inp">
+              <input value="<%=User.client_name[i]%> " minlength="1" type="text" name="client_name" placeholder="client name">
+            </div>
+            <div class="row start-end-cont">
+              <div class="start-time my-cl">
+                <label for="start_time">start: </label>
+                <input value="<%=User.start_time[i]%> " maxlength="10" type="text" class="start_time" id="start_time" name="start_time">
+              </div>
+              <div class="end-time my-cl">
+                <label for="end_time">end: </label>
+                <input value="00:00" disabled type="text" id="end_time" name="end_time">
+              </div>
+            </div>
+            <div class="row game-price-cont">
+              <select name="chosen_game" class="playing_game">
+                  <option value="<%=User.chosen_game[i]%>"><%=User.chosen_game[i]%></option>
+              </select>
+              <input value="$$$" disabled type="text" id="game_price">
+            </div>
+            <div class="row btns-cont">
+              <div class="btns">
+                <span id="end_play_game">end</span>
+              </div>
+              <span data-index="<%=i%> " class="delete_play_game">delete</span>
+            </div>
+            <div class="row comments">
+              <p class="d-none valid_time">please enter the time in this form " hh:mm:ss => 00:00:00 ("PM" or "AM") "</p>
+            </div>
+          </div>
+        </section>
+
+      <% } %> 
+
+
+
+
+      <section id="play_game_card" class="game-card">
+        <div class="container">
+          <div class="row client-name-cont">
+            <input name="chosen_game_price" type="text" class="d-none game_price_inp">
+            <input minlength="1" type="text" name="client_name" placeholder="client name">
+          </div>
+          <div class="row start-end-cont">
+            <div class="start-time my-cl">
+              <label for="start_time">start: </label>
+              <input maxlength="10" type="text" class="start_time start_clock" id="start_time" name="start_time">
+            </div>
+            <div class="end-time my-cl">
+              <label for="end_time">end: </label>
+              <input value="00:00" disabled type="text" id="end_time" name="end_time">
+            </div>
+          </div>
+          <div class="row game-price-cont">
+            <select name="chosen_game" class="playing_game">
+              <% for (let i = 0; i < User.game.length; i++) { %>
+                <option value="<%=User.game[i]%>"><%=User.game[i]%></option>
+              <% }; %> 
+            </select>
+            <input value="$$$" disabled type="text" id="game_price">
+          </div>
+          <div class="row btns-cont">
+            <div class="btns">
+              <span id="end_play_game">end</span>
+            </div>
+            <span class="delete_set_game">delete</span>
+          </div>
+          <div class="row comments">
+            <p class="d-none valid_time">please enter the time in this form " hh:mm:ss => 00:00:00 ("PM" or "AM") "</p>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      <div class="start-btn-cont">
+        <button type="submit" class="start_play_game" id="start_play_game">start timers</button>
+      </div>
+    
+    
+    </form>
+
+
+  </section>
+
+
+  <span 
+    class="d-none" 
+    data-chosen_game="<%=User.chosen_game%>"
+    data-client_name="<%=User.client_name%>" 
+    data-start_time="<%=User.start_time%>" 
+    data-chosen_game_price="<%=User.chosen_game_price%>" 
+    id="data" data-id="<%=User._id%>" 
+    data-prices="<%=User.price%>" 
+    data-games="<%=User.game%>"
+  ></span>
+
+
+  
+
+
+  <div class="add-game">
+    <button id="add_game_btn">add client</button>
+  </div>
+
+
+  <%- include('partials/scripts.ejs') %>
+  <script src="/js/acc.js"></script>
+</body>
+</html>
