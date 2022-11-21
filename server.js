@@ -27,6 +27,7 @@ const root = require('./routes/root')
 const login = require('./routes/login')
 const sign_in = require('./routes/sign-in')
 const help_page = require('./routes/help')
+const contact = require('./routes/contact')
 
 
 
@@ -50,18 +51,18 @@ mongoose.connect(process.env.DB_LINK)
 
 
 // for auto refresh 
-const livereload = require("livereload");
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, 'public'));
-const connectLivereload = require("connect-livereload");
-const { send, render } = require('express/lib/response');
-app.use(connectLivereload());
+// const livereload = require("livereload");
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.watch(path.join(__dirname, 'public'));
+// const connectLivereload = require("connect-livereload");
+// const { send, render } = require('express/lib/response');
+// app.use(connectLivereload());
 
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-}); 
+// liveReloadServer.server.once("connection", () => {
+//   setTimeout(() => {
+//     liveReloadServer.refresh("/");
+//   }, 100);
+// }); 
 // end auto refresh
 
 
@@ -85,6 +86,7 @@ app.use(acc)
 app.use(login)
 app.use(sign_in)
 app.use(help_page)
+app.use(contact)
 
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('partials/nav.ejs') %>
+
+
+
+    <section class="contact">
+
+
+        <div class="overlay">
+    
+    
+          <div class="container">
+            <div class="send-email">
+              <h1>send me an email</h1>
+              <p>or use my accounts on the bottom of the page</p>
+              <form enctype="text/plain" action="ali2292005@gmail.com" method="post" >
+                <input type="text" name="name" id="name" placeholder="your name">
+                <input type="email" name="email" id="email" placeholder="your email">
+                <textarea rows="12" cols="35" name="comments" id="comments" placeholder="content"></textarea>
+                <button type="submit">submit</button>
+              </form>
+            </div>
+          </div>
+    
+    
+        </div>
+    
+    
+    
+    
+      </div>
+
+
+
+    <%- include('partials/footer.ejs') %>
+    <%- include('partials/scripts.ejs') %>
+</body>
+</html>
